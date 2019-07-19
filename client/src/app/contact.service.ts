@@ -16,16 +16,17 @@ export class ContactService {
 
   }
 
-  addContact(newContact){
+  addContact(newContact):Observable<Contact[]>{
 
     var header=new HttpHeaders();
+    console.log(newContact);
     header.append('Content-Type','application/json');
-    return this.http.post('http://localhost:3000/api/contact',newContact,{headers:header});
+    return this.http.post<Contact[]>('http://localhost:3000/api/contact',newContact,{headers:header});
   }
 
   deleteContact(id):Observable<Contact[]>
   {
-    return this.http.delete<Contact[]>('http://localhost:3000/contact/id'+id);
+    return this.http.delete<Contact[]>('http://localhost:3000/api/contact/'+id);
   }
 
 }
